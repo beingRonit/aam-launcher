@@ -1,11 +1,10 @@
 <div align="center">
-  <img src="app/src/main/res/drawable-nodpi/aam_icon.png" alt="Aam Launcher icon" width="140" />
+  <img src="app/src/main/res/drawable-nodpi/aam_icon.png" alt="Aam Launcher mango icon" width="140" />
 
-  # Aam Launcher
+  <h1>Aam Launcher</h1>
 
-  **A fast, focus-first home screen for Android TV.**
-
-  Your favourite apps up front. Everything else one D-pad press away.
+  <p><strong>A fast, focus-first home screen for Android TV.</strong></p>
+  <p>Your favourite apps up front. Everything else one D-pad press away.</p>
 
   <p>
     <img src="https://img.shields.io/badge/platform-Android%20TV-3DDC84?logo=android&logoColor=white" alt="Platform: Android TV" />
@@ -24,15 +23,32 @@ Aam Launcher is a lightweight, remote-friendly home screen for Android TV, origi
 The interface is designed around D-pad navigation and keeps the focus on your installed apps rather than recommendation feeds or promotional rows.
 
 <div align="center">
-  <img src="app/src/main/res/drawable-nodpi/aam_banner.png" alt="Aam Launcher banner" width="720" />
+  <img src="app/src/main/res/drawable-nodpi/aam_banner.png" alt="Aam Launcher TV banner" width="720" />
 </div>
+
+## Screenshots
+
+These screenshots show the launcher running on a TV: the favourites panel and the full All Apps grid.
+
+<table>
+  <tr>
+    <td align="center" width="50%"><strong>Favourites panel</strong></td>
+    <td align="center" width="50%"><strong>All Apps</strong></td>
+  </tr>
+  <tr>
+    <td align="center"><img src="screenshots/fav8.png" alt="Aam Launcher favourites panel showing pinned apps" width="100%" /></td>
+    <td align="center"><img src="screenshots/all-apps.png" alt="Aam Launcher All Apps grid on Android TV" width="100%" /></td>
+  </tr>
+</table>
+
+> The screenshot files are stored in `screenshots/fav8.png` and `screenshots/all-apps.png`.
 
 ## Features
 
-- **Go-to apps panel:** Keep up to 12 pinned apps in a two-row panel at the top of the screen.
+- **Favourites panel:** Keep frequently used apps in a two-row panel at the top of the screen.
 - **All Apps grid:** Browse launchable apps in a four-column grid.
 - **TV and standard apps:** Discovers apps exposed through Android TV's Leanback launcher category and the standard launcher category.
-- **Remote-first focus:** Visible focus treatment, scale-up on the selected tile, and a large title showing the focused app's name.
+- **Remote-first focus:** A visible focus treatment, scale-up on the selected tile, and a large title showing the focused app's name.
 - **App-aware accent glow:** The background accent follows the focused app using known brand colours or a colour derived from its icon.
 - **Live header:** Time-of-day greeting, clock, date, and a network indicator for Wi-Fi or Ethernet.
 - **Settings shortcut:** Open system settings from the home screen.
@@ -40,7 +56,7 @@ The interface is designed around D-pad navigation and keeps the focus on your in
 - **Remembers your layout:** Pinned and hidden-app selections are stored locally with `SharedPreferences`.
 - **Smooth scrolling:** App visuals and tint colours are prepared off the main thread; rows fade as they leave the visible area.
 
-### Default Go-to apps
+### Default favourites
 
 On first launch, the panel is pre-filled with the following apps when they are installed. You can customise the selection from the long-press menu.
 
@@ -50,7 +66,7 @@ TizenTube · JioHotstar · Spotify · SonyLIV · Browser · Play Store · LocalS
 
 ### Requirements
 
-- An Android TV device or emulator. The app's configured minimum SDK is Android 12 / API 31.
+- An Android TV device or emulator. The configured minimum SDK is Android 12 / API 31.
 - Android Studio and the Android SDK, or a compatible command-line Android build environment.
 - JDK 17 for the configured Java compile options.
 - ADB (`platform-tools`) for installing and launching the app on a connected device.
@@ -103,7 +119,7 @@ Launch Aam Launcher explicitly:
 adb shell am start -n com.litehome.aamlauncher/com.litehome.bravialauncher.MainActivity
 ```
 
-To use it as the Home app, press **Home** on the remote and choose Aam Launcher if Android offers a launcher picker. Some TV firmware may restrict changing the default Home app; the available settings vary by device.
+To use it as the Home app, press **Home** on the remote and choose Aam Launcher if Android offers a launcher picker. Some TV firmware may restrict changing the default Home app; available settings vary by device.
 
 > **Package details:** The installed application ID is `com.litehome.aamlauncher`. The Java activity remains in the `com.litehome.bravialauncher` namespace, so the explicit component above uses both names.
 
@@ -143,6 +159,9 @@ aam-launcher/
 │           │   └── aam_icon.png
 │           ├── mipmap-*/
 │           └── values/
+├── screenshots/
+│   ├── fav8.png
+│   └── all-apps.png
 ├── gradle/wrapper/
 ├── build.gradle.kts
 ├── gradle.properties
@@ -154,9 +173,9 @@ aam-launcher/
 ## How it works
 
 - **Single activity:** `MainActivity` builds the interface programmatically in Java; the main screen does not use XML layouts.
-- **RecyclerView grid:** A `RecyclerView` with a `GridLayoutManager` displays the Go-to apps panel, All Apps heading, and app tiles. Span-size handling accommodates full-width rows.
+- **RecyclerView grid:** A `RecyclerView` with a `GridLayoutManager` displays the favourites panel, All Apps heading, and app tiles. Span-size handling accommodates full-width rows.
 - **Remote focus handling:** Focus callbacks and layout/scroll logic keep D-pad navigation predictable and update the focused-app title and accent.
-- **Custom drawing:** An item decoration draws the Go-to panel and fades it as the grid scrolls away. Rows near the top edge also fade based on their visible portion.
+- **Custom drawing:** An item decoration draws the favourites panel and fades it as the grid scrolls away. Rows near the top edge also fade based on their visible portion.
 - **Background preparation:** App icons, banners, and tint colours are prepared on a background executor to help keep scrolling responsive.
 
 ## Customising
@@ -165,7 +184,7 @@ The following settings are defined in `MainActivity.java`:
 
 | Setting | What it controls |
 | --- | --- |
-| `pinned.add(...)` in the preferences loader | Default pinned apps |
+| Default pinned-apps setup in the preferences loader | Initial favourites |
 | `DEFAULT_LABELS` | Friendly names for apps |
 | `KNOWN_TINTS` | Known accent colours per app |
 | `MAX_PINNED` | Maximum number of pinned apps |
