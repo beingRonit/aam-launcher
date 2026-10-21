@@ -1,0 +1,33 @@
+﻿# Gradle and generated output
+.gradle/
+.kotlin/
+**/build/
+
+# Local machine settings
+local.properties
+
+# IDE and operating system files
+.idea/
+*.iml
+.DS_Store
+
+# Native build output
+.externalNativeBuild/
+.cxx/
+captures/
+
+# Signing keys and secrets
+*.jks
+*.keystore
+key.properties
+
+# Generated packages and backup files
+*.apk
+*.aab
+*.bak
+*.backup-*
+
+# Temporary screenshots in project root
+/*.png
+/*.jpg
+/*.jpeg
